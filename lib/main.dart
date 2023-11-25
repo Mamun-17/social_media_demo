@@ -1,8 +1,23 @@
+
+
 import 'package:flutter/material.dart';
-import 'package:social_media_demo/views/logIn_view.dart';
+import 'package:provider/provider.dart';
+import 'package:social_media_demo/all_providers/provider_for_login_view.dart';
+import 'package:social_media_demo/all_providers/provider_for_signup_view.dart';
+import 'package:social_media_demo/views/login_view.dart';
+import 'package:social_media_demo/views/signup_view.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => Provider_For_SignUp()),
+        ChangeNotifierProvider(create: (_) => Provider_For_LogIn()),
+      ],
+      child:  MyApp(),
+    ),
+  );
+
 }
 
 class MyApp extends StatelessWidget {
